@@ -44,8 +44,8 @@ app.post('/send', (req, res) => {
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-            user: "x.rckvan@yahoo.com",
-            pass: "@bI4q8dj559"
+            user: process.env.EMAIL,
+            pass: process.env.EMAIL_PW
         },
         tls: {
             rejectUnauthorized: false
