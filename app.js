@@ -76,7 +76,6 @@ app.post('/send', (req, res) => {
         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
         res.render('contact', { msg: 'Email has be sent' });
-        res.redirect('http://google.com');
     });
 });
 
