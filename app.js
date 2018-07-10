@@ -72,5 +72,9 @@ app.post('/send', (req, res) => {
     });
 });
 
+app.use(function(err, req, res, next) {
+    console.error(err.stack)
+    res.status(500).send('Something broke!')
+});
 
-app.listen(3000, () => console.log('Server Started...'));
+app.listen(process.env.PORT || 3000, () => console.log('Server Started...'));
