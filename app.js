@@ -40,7 +40,6 @@ app.post('/send', (req, res) => {
         }
     }
     theNews(req.body.news);
-    console.log(theNews());
     const output = `
     <p>You have a new contact request </p>
     <h3>Contact Details </h3>
