@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
@@ -18,7 +19,7 @@ app.use(bodyParser.urlencoded({ extender: false }));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-    res.render('contact');
+    res.render('contact', { data: process.env.NODEMAILER_URL });
 });
 // app.post('/send', (req, res) => {
 //     console.log(req.body);
