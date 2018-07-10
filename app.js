@@ -5,8 +5,11 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 const nodemailer = require('nodemailer');
 const favicon = require('express-favicon');
-
 const app = express();
+const flash = require('connect-flash');
+const cookieParser = require('cookie-parser');
+const session = require('express-session')
+
 // View engine setup
 app.use(favicon(__dirname + '/public/favicon.png'));
 app.engine('handlebars', exphbs());
@@ -18,13 +21,15 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extender: false }));
 app.use(bodyParser.json());
 
+
+app.use(cookieParser('keyboard cat'));
+app.use(session({ cookie: { maxAge: 60000 } }));
+app.use(flash());
+
 app.get('/', (req, res) => {
-    res.render('contact', { data: process.NODEMAILER_URL });
-    res.redirect(process.REDIRECT_URL);
-});
-// app.post('/send', (req, res) => {
-//     console.log(req.body);
-// });
+    res.render('contact');
+})
+
 
 app.post('/send', (req, res) => {
     const output = `
@@ -49,7 +54,7 @@ app.post('/send', (req, res) => {
             pass: process.env.EMAIL_PW
         },
         tls: {
-            rejectUnauthorized: false
+            rejectUnauthorized: true
         }
     });
 
@@ -70,7 +75,8 @@ app.post('/send', (req, res) => {
         console.log('Message sent: %s', info.messageId);
         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
-        res.render('contact', { msg: 'Email has be sent' })
+        res.render('contact', { msg: 'Email has be sent' });
+        res.redirect('http://google.com');
     });
 });
 
