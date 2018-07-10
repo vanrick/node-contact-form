@@ -8,6 +8,6 @@
 <script>
   setTimeout(function () {
      // after 2 seconds
-     window.location = {{redirect_url}};
+     window.location = process.env.REDIRECT_URL;
   }, 2000)
 </script>
