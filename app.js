@@ -40,7 +40,7 @@ app.post('/send', (req, res) => {
         }
     }
     theNews(req.body.news);
-    console.log(theNews);
+    console.log(theNews());
     const output = `
     <p>You have a new contact request </p>
     <h3>Contact Details </h3>
@@ -48,7 +48,7 @@ app.post('/send', (req, res) => {
         <li>Name: ${req.body.name} </li>
         <li>Email: ${req.body.email}  </li>
         <li>Company: ${req.body.company}  </li>
-        <li>Newsletter: ${theNews} </li>
+        <li>Newsletter: ${theNews()} </li>
     </ul>
     <h3>Message</h3>
     <p>${req.body.message}</p>
