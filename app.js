@@ -46,7 +46,7 @@ app.post('/send', (req, res) => {
     `;
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
+        host: 'smtp.mail.yahoo.com',
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
@@ -75,7 +75,7 @@ app.post('/send', (req, res) => {
         console.log('Message sent: %s', info.messageId);
         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
-        res.render('contact', { msg: 'Email has be sent' });
+        res.render('contact', { msg: 'Your email has been sent!', redirect_url: process.env.REDIRECT_URL });
     });
 });
 

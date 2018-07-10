@@ -1,12 +1,13 @@
 <head>
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
 </head>
+<div style="text-align:center;">
+<h1>{{msg}}</h1>
+</div>
 
-<br>
-{{msg}}
 <script>
   setTimeout(function () {
      // after 2 seconds
-     window.location = "http://localhost:8000/";
+     window.location = {{redirect_url}};
   }, 2000)
 </script>
