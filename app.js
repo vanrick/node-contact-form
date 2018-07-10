@@ -20,6 +20,7 @@ app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
     res.render('contact', { data: process.NODEMAILER_URL });
+    res.redirect(process.REDIRECT_URL);
 });
 // app.post('/send', (req, res) => {
 //     console.log(req.body);
