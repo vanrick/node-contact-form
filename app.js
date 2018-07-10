@@ -32,14 +32,6 @@ app.get('/', (req, res) => {
 
 
 app.post('/send', (req, res) => {
-    let theNews = (answer) => {
-        if (answer === 'undefined') {
-            return 'No'
-        } else {
-            return 'Yes'
-        }
-    }
-    theNews(req.body.news);
     const output = `
     <p>You have a new contact request </p>
     <h3>Contact Details </h3>
@@ -47,7 +39,7 @@ app.post('/send', (req, res) => {
         <li>Name: ${req.body.name} </li>
         <li>Email: ${req.body.email}  </li>
         <li>Company: ${req.body.company}  </li>
-        <li>Newsletter: ${theNews()} </li>
+        <li>Newsletter: ${req.body.news =='on' ? "Yes" : "No"} </li>
     </ul>
     <h3>Message</h3>
     <p>${req.body.message}</p>
