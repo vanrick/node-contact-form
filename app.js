@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extender: false }));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-    res.render('contact', { data: process.env.NODEMAILER_URL });
+    res.render('contact', { data: process.NODEMAILER_URL });
 });
 // app.post('/send', (req, res) => {
 //     console.log(req.body);
@@ -40,7 +40,7 @@ app.post('/send', (req, res) => {
     `;
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
-        host: 'smtp.mail.yahoo.com',
+        host: 'imap.gmail.com',
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
@@ -54,8 +54,8 @@ app.post('/send', (req, res) => {
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: '"Nodemailer contact" <x.rckvan@yahoo.com>', // sender address
-        to: 'xrickvan@gmail.com', // list of receivers
+        from: `"Nodemailer contact" ${process.env.EMAIL}`, // sender address
+        to: `${process.env.EMAIL_LIST}`, // list of receivers
         subject: 'Node contact request ✔', // Subject line
         text: 'Hello world?', // plain text body
         html: output // html body
