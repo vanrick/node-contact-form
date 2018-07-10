@@ -7,9 +7,9 @@ const favicon = require('express-favicon');
 
 const app = express();
 // View engine setup
+app.use(favicon(__dirname + '/public/favicon.png'));
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
-app.use(favicon(__dirname + '/public/favicon.ico'));
 // static folder
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
